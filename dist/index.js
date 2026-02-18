@@ -7,6 +7,7 @@ import { usermiddleware } from "./middleware.js";
 import { random } from "./utils.js";
 const app = express();
 app.use(express.json());
+// test
 app.post("/api/v1/signup", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
