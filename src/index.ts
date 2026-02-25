@@ -5,9 +5,11 @@ import { ContentModel, LinkModel, UserModel } from "./db.js";
 import { JWT_PASSWORD } from "./config.js";
 import { usermiddleware } from "./middleware.js";
 import { random } from "./utils.js";
+import cors from "cors" ;
 
 const app = express() ;
 app.use(express.json());
+app.use(cors());
 
 // test
 
@@ -64,9 +66,11 @@ app.post("/api/v1/signin" ,async(req , res)=>{
 app.post("/api/v1/content",usermiddleware ,async(req , res)=>{
     const link = req.body.link;
     const type = req.body.type ;
+    const title = req.body.title ;
     await ContentModel.create({
         type,
         link,
+        title,
         userId :new mongoose.Types.ObjectId(req.userId) ,
         tags : []
     })
